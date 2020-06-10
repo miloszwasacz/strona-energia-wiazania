@@ -130,11 +130,8 @@
 		}
 		</script>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-			<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-			<script defer src="https://code.getmdl.io/1.3.0/material.min.js">
-			<!--getmdl-select-->   
-			<link rel="stylesheet" href="path_to/getmdl-select/getmdl-select.min.css">
-			<script defer src="path_to/getmdl-select/getmdl-select.min.js"></script>
+			<link rel="stylesheet" href="material.min.css">
+			<script defer src="material.min.js">
 		</script>
 		<!-- Select -->
 		<script>
@@ -333,39 +330,37 @@
 	</head>
 	<body style="overflow: hidden;" bgcolor="#fafafa">
 		<style>
-		.center {
-		  display: block;
-		  margin: auto;
-		  width: 40%;
-		}
 		.demo-card-wide.mdl-card {
-		  height: 512px;
-		  width: 512px;
-		  position: relative;
-		  top: 50%;
-		  margin-top: 250px;
-		  margin-left: auto;
-		  margin-right: auto;
+			height: 600px;
+			width: 512px;
+			position: relative;
+			top: 50%;
+			margin-top: 230px;
+			margin-left: auto;
+			margin-right: auto;
 		}
 		.demo-card-wide > .mdl-card__title {
-		  height: 100px;
-		  color: #fff;
-		  background-color: #9400ff;
+			height: 100px;
+			color: #fff;
+			background-color: #9400ff;
 		}
 		.demo-card-wide > .mdl-card__menu {
-		  color: #fff;
+			color: #fff;
 		}
 		.mdl-textfield  {
 			width: 85%;
 		}
-		.scrollable{
-		   overflow: auto;
-		   height: 250px;
-		   border: 1px silver solid;
-		 }
-		 .scrollable select{
-		   border: none;
-		 }
+		.scrollable {
+			overflow: auto;
+			height: 250px;
+			border: 1px silver solid;
+		}
+		.scrollable select {
+			border: none;
+		}
+		.input {
+			height: 33px;
+		}
 		</style>
 		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 			<div class="mdl-card__title">
@@ -415,15 +410,15 @@
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<div class="mdl-textfield__label">Energia wiązania</div>
 						<br>
-						<div class="mdl-textfield__input" type="submit" id="wynikJ" readonly></div>
-						<div class="mdl-textfield__input" type="submit" id="wynikEV" readonly></div>
+						<div class="mdl-textfield__input input" type="submit" id="wynikJ" readonly></div>
+						<div class="mdl-textfield__input input" type="submit" id="wynikEV" readonly></div>
 					</div>
 					
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<div class="mdl-textfield__label">Energia wiązania na nukleon</div>
 						<br>
-						<div class="mdl-textfield__input" type="submit" id="wynikNaNukleonJ" readonly></div>
-						<div class="mdl-textfield__input" type="submit" id="wynikNaNukleonEV" readonly></div>
+						<div class="mdl-textfield__input input" type="submit" id="wynikNaNukleonJ" readonly></div>
+						<div class="mdl-textfield__input input" type="submit" id="wynikNaNukleonEV" readonly></div>
 					</div>
 				</center>
 			</div>
