@@ -3,129 +3,133 @@
 		<meta charset="UTF-8"> 
 		<!-- Obliczenia -->
 		<script>
-		function oblicz() { 
+		function uzupelnij() {
 			var val = document.getElementById("list").value;
 			var pierwiastkiList = [
-					{//wodór
-						"nazwa": "wodór",
-						"masa": 1.6726,
-						"liczbaMasowa": 1,
-						"liczbaAtomowa": 1
-					},
-					{//deuter
-						"nazwa": "deuter",
-						"masa": 3.3436,
-						"liczbaMasowa": 2,
-						"liczbaAtomowa": 1
-					},
-					{//tryt
-						"nazwa": "tryt",
-						"masa": 5.0074,
-						"liczbaMasowa": 3,
-						"liczbaAtomowa": 1
-					},
-					{//hel
-						"nazwa": "He-4",
-						"masa": 6.6447,
-						"liczbaMasowa": 4,
-						"liczbaAtomowa": 2
-					},
-					{//węgiel
-						"nazwa": "C-12",
-						"masa": 19.9210,
-						"liczbaMasowa": 12,
-						"liczbaAtomowa": 6
-					},
-					{//krypton
-						"nazwa": "Kr-93",
-						"masa": 154.2832,
-						"liczbaMasowa": 93,
-						"liczbaAtomowa": 36
-					},
-					{//stront
-						"nazwa": "Sr-94",
-						"masa": 155.9155,
-						"liczbaMasowa": 94,
-						"liczbaAtomowa": 38
-					},
-					{//bar-140
-						"nazwa": "Ba-140",
-						"masa": 232.2760,
-						"liczbaMasowa": 140,
-						"liczbaAtomowa": 56
-					},
-					{//bar-144
-						"nazwa": "Ba-144",
-						"masa": 238.9387,
-						"liczbaMasowa": 144,
-						"liczbaAtomowa": 56
-					},
-					{//polon
-						"nazwa": "Po-218",
-						"masa": 361.9359,
-						"liczbaMasowa": 218,
-						"liczbaAtomowa": 84
-					},
-					{//radon
-						"nazwa": "Rn-222",
-						"masa": 368.5905,
-						"liczbaMasowa": 222,
-						"liczbaAtomowa": 86
-					},
-					{//rad
-						"nazwa": "Ra-226",
-						"masa": 375.2438,
-						"liczbaMasowa": 226,
-						"liczbaAtomowa": 88
-					},
-					{//uran
-						"nazwa": "U-235",
-						"masa": 390.2158,
-						"liczbaMasowa": 235,
-						"liczbaAtomowa": 92
-					},
-					{//pluton
-						"nazwa": "Pu-239",
-						"masa": 396.8698,
-						"liczbaMasowa": 239,
-						"liczbaAtomowa": 94
-					},
-				];
-			if(val != "") {	
-				var index;
-				for(i = 0; i < pierwiastkiList.length; i++) {
-					if(val == pierwiastkiList[i].nazwa) {
-						index = i;
-						break;
-					}
+				{//wodór
+					"nazwa": "wodór",
+					"masa": 1.6726,
+					"liczbaMasowa": 1,
+					"liczbaAtomowa": 1
+				},
+				{//deuter
+					"nazwa": "deuter",
+					"masa": 3.3436,
+					"liczbaMasowa": 2,
+					"liczbaAtomowa": 1
+				},
+				{//tryt
+					"nazwa": "tryt",
+					"masa": 5.0074,
+					"liczbaMasowa": 3,
+					"liczbaAtomowa": 1
+				},
+				{//hel
+					"nazwa": "He-4",
+					"masa": 6.6447,
+					"liczbaMasowa": 4,
+					"liczbaAtomowa": 2
+				},
+				{//węgiel
+					"nazwa": "C-12",
+					"masa": 19.9210,
+					"liczbaMasowa": 12,
+					"liczbaAtomowa": 6
+				},
+				{//krypton
+					"nazwa": "Kr-93",
+					"masa": 154.2832,
+					"liczbaMasowa": 93,
+					"liczbaAtomowa": 36
+				},
+				{//stront
+					"nazwa": "Sr-94",
+					"masa": 155.9155,
+					"liczbaMasowa": 94,
+					"liczbaAtomowa": 38
+				},
+				{//bar-140
+					"nazwa": "Ba-140",
+					"masa": 232.2760,
+					"liczbaMasowa": 140,
+					"liczbaAtomowa": 56
+				},
+				{//bar-144
+					"nazwa": "Ba-144",
+					"masa": 238.9387,
+					"liczbaMasowa": 144,
+					"liczbaAtomowa": 56
+				},
+				{//polon
+					"nazwa": "Po-218",
+					"masa": 361.9359,
+					"liczbaMasowa": 218,
+					"liczbaAtomowa": 84
+				},
+				{//radon
+					"nazwa": "Rn-222",
+					"masa": 368.5905,
+					"liczbaMasowa": 222,
+					"liczbaAtomowa": 86
+				},
+				{//rad
+					"nazwa": "Ra-226",
+					"masa": 375.2438,
+					"liczbaMasowa": 226,
+					"liczbaAtomowa": 88
+				},
+				{//uran
+					"nazwa": "U-235",
+					"masa": 390.2158,
+					"liczbaMasowa": 235,
+					"liczbaAtomowa": 92
+				},
+				{//pluton
+					"nazwa": "Pu-239",
+					"masa": 396.8698,
+					"liczbaMasowa": 239,
+					"liczbaAtomowa": 94
+				},
+			];
+			var index;
+			for(i = 0; i < pierwiastkiList.length; i++) {
+				if(val == pierwiastkiList[i].nazwa) {
+					index = i;
+					break;
 				}
-				var pierwistek = pierwiastkiList[index];
-				var liczbaNeutronow = pierwistek.liczbaMasowa - pierwistek.liczbaAtomowa;
-				var deficyt = 
-				(pierwistek.liczbaAtomowa * 1.6726 * Math.pow(10, -27) + liczbaNeutronow * 1.6749 * Math.pow(10, -27)) - (pierwistek.masa * Math.pow(10, -27));
-				var energiaJ = (deficyt * 9 * Math.pow(10, 16)).toExponential(4);
-				var energiaEV = (energiaJ / (1.6 * Math.pow(10, -19))).toExponential(4);
-				var energiaNaNukleonJ = (energiaJ / pierwistek.liczbaMasowa).toExponential(4);
-				var energiaNaNukleonEV = (energiaEV / pierwistek.liczbaMasowa).toExponential(4);
-				
-				
-				//wynik.parentElement.MaterialTextfield.change(energiaJ + " J" + "\r\n" + energiaEV + " eV");
-				//wynikNaNukleon.parentElement.MaterialTextfield.change(energiaNaNukleonJ + " J" + "\r\n" + energiaNaNukleonEV + " eV");
-				wyswietl(energiaJ, "J", wynikJ)
-				wyswietl(energiaEV, "eV", wynikEV)
-				wyswietl(energiaNaNukleonJ, "J", wynikNaNukleonJ)
-				wyswietl(energiaNaNukleonEV, "eV", wynikNaNukleonEV)
 			}
-			else {
-				alert("Wybierz izotop");
+			var pierwistek = pierwiastkiList[index];
+			
+			inputMasa.parentElement.MaterialTextfield.change(pierwistek.masa);
+			inputLiczbaMas.parentElement.MaterialTextfield.change(pierwistek.liczbaMasowa);
+			inputLiczbaAtom.parentElement.MaterialTextfield.change(pierwistek.liczbaAtomowa);
+		}
+		function oblicz() { 
+			var pierwistek = {
+				"masa": inputMasa.value,
+				"liczbaMasowa": inputLiczbaMas.value,
+				"liczbaAtomowa": inputLiczbaAtom.value
 			}
+		
+			var liczbaNeutronow = pierwistek.liczbaMasowa - pierwistek.liczbaAtomowa;
+			var deficyt = 
+			(pierwistek.liczbaAtomowa * 1.6726 * Math.pow(10, -27) + liczbaNeutronow * 1.6749 * Math.pow(10, -27)) - (pierwistek.masa * Math.pow(10, -27));
+			var energiaJ = (deficyt * 9 * Math.pow(10, 16)).toExponential(4);
+			var energiaEV = (energiaJ / (1.6 * Math.pow(10, -19))).toExponential(4);
+			var energiaNaNukleonJ = (energiaJ / pierwistek.liczbaMasowa).toExponential(4);
+			var energiaNaNukleonEV = (energiaEV / pierwistek.liczbaMasowa).toExponential(4);
+			
+			wyswietl(energiaJ, "J", wynikJ)
+			wyswietl(energiaEV, "eV", wynikEV)
+			wyswietl(energiaNaNukleonJ, "J", wynikNaNukleonJ)
+			wyswietl(energiaNaNukleonEV, "eV", wynikNaNukleonEV)
 		}
 		function wyswietl(wartosc, jednostka, id) {
 			let e = wartosc.search(/e/i);
 			let x = wartosc[e+2];
 			let y = (wartosc[e+3] >= 0) ? wartosc[e+3] : '';
 			let nowy = wartosc.substr(0, e); 
-			const wykladnik = (x.toString() + y.toString()).sup()
+			const wykladnik = (((wartosc[e+1]=='-') ? "-" : "") + x.toString() + y.toString()).sup()
 			id.innerHTML = nowy + " \u22c5 10" + wykladnik + " " + jednostka;
 		}
 		</script>
@@ -332,7 +336,7 @@
 		<style>
 		.demo-card-wide.mdl-card {
 			height: 600px;
-			width: 512px;
+			width: 600px;
 			position: relative;
 			top: 50%;
 			margin-top: 230px;
@@ -342,13 +346,19 @@
 		.demo-card-wide > .mdl-card__title {
 			height: 100px;
 			color: #fff;
-			background-color: #9400ff;
+			background-color: #3f51b5;
 		}
 		.demo-card-wide > .mdl-card__menu {
 			color: #fff;
 		}
 		.mdl-textfield  {
 			width: 85%;
+		}
+		.data-table {
+			width: 100%;
+		}
+		.column {
+			width: 50%;
 		}
 		.scrollable {
 			overflow: auto;
@@ -369,42 +379,71 @@
 			</center>
 			</div>
 			<div class="mdl-card__supporting-text" style="text-align: justify">
-				Wylicz energię wiązania pierwiastka podając jego masę, liczbę atomową oraz liczbę masową lub wybierz jeden z najczęściej używanych pierwiastków.
+				Podaj masę pierwiastka, jego liczbę atomową i masową lub wybierz jeden z najczęściej używanych pierwiastków, aby wyliczyć jego energię wiązania.
 			</div>
-			
+			<table class="data-table">
+			<td class="column">
 			<center>
-			<!-- Select with floating label -->
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-				<input type="text" value="" class="mdl-textfield__input" id="list" readonly>
-				<input type="hidden" value="" name="list">
-				<label for="list" class="mdl-textfield__label">Pierwiastki</label>
-				<ul for="list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu scrollable">
-					<li class="mdl-menu__item" data-val="wodór">wodór</li>
-					<li class="mdl-menu__item" data-val="deuter">deuter</li>
-					<li class="mdl-menu__item" data-val="tryt">tryt</li>
-					<li class="mdl-menu__item" data-val="He-4">He-4</li>
-					<li class="mdl-menu__item" data-val="C-12">C-12</li>
-					<li class="mdl-menu__item" data-val="Kr-93">Kr-93</li>
-					<li class="mdl-menu__item" data-val="Sr-94">Sr-94</li>
-					<li class="mdl-menu__item" data-val="Ba-140">Ba-140</li>
-					<li class="mdl-menu__item" data-val="Ba-144">Ba-144</li>
-					<li class="mdl-menu__item" data-val="Po-218">Po-218</li>
-					<li class="mdl-menu__item" data-val="Rn-222">Rn-222</li>
-					<li class="mdl-menu__item" data-val="Ra-226">Ra-226</li>
-					<li class="mdl-menu__item" data-val="U-235">U-235</li>
-					<li class="mdl-menu__item" data-val="Pu-239">Pu-239</li>
-				</ul>
-			</div>  
-			
-			
-			
-			<div>
-				<!-- Button Oblicz -->
-				<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="oblicz()">Oblicz</a>
-			</div>
-			</center
-			<div class="mdl-card__actions mdl-card--border">
-				<br>
+				<!-- Select with floating label -->
+				<form action="select">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+					<input type="text" value="" defaultvalue="" class="mdl-textfield__input" id="list" readonly>
+					<input type="hidden" value="" name="list">
+					<label for="list" class="mdl-textfield__label">Pierwiastki</label>
+					<ul for="list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu scrollable" onclick="uzupelnij()">
+						<li class="mdl-menu__item" data-val="wodór">wodór</li>
+						<li class="mdl-menu__item" data-val="deuter">deuter</li>
+						<li class="mdl-menu__item" data-val="tryt">tryt</li>
+						<li class="mdl-menu__item" data-val="He-4">He-4</li>
+						<li class="mdl-menu__item" data-val="C-12">C-12</li>
+						<li class="mdl-menu__item" data-val="Kr-93">Kr-93</li>
+						<li class="mdl-menu__item" data-val="Sr-94">Sr-94</li>
+						<li class="mdl-menu__item" data-val="Ba-140">Ba-140</li>
+						<li class="mdl-menu__item" data-val="Ba-144">Ba-144</li>
+						<li class="mdl-menu__item" data-val="Po-218">Po-218</li>
+						<li class="mdl-menu__item" data-val="Rn-222">Rn-222</li>
+						<li class="mdl-menu__item" data-val="Ra-226">Ra-226</li>
+						<li class="mdl-menu__item" data-val="U-235">U-235</li>
+						<li class="mdl-menu__item" data-val="Pu-239">Pu-239</li>
+					</ul>
+				</div>
+				</form>
+				
+				<!-- Masa -->
+				<form action="#">
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="inputMasa">
+					<label class="mdl-textfield__label" for="inputMasa">Masa [&#x22c5 10<sup>-27</sup> kg]</label>
+					<span class="mdl-textfield__error">Błędna wartość</span>
+				  </div>
+				</form>
+				
+				<!-- Liczba masowa -->
+				<form action="#">
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" pattern="\d*" id="inputLiczbaMas">
+					<label class="mdl-textfield__label" for="inputLiczbaMas">Liczba masowa</label>
+					<span class="mdl-textfield__error">Błędna wartość</span>
+				  </div>
+				</form>
+				
+				<!-- Liczba atomowa -->
+				<form action="#">
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" pattern="\d*" id="inputLiczbaAtom">
+					<label class="mdl-textfield__label" for="inputLiczbaAtom">Liczba atomowa</label>
+					<span class="mdl-textfield__error">Błędna wartość</span>
+				  </div>
+				</form>
+
+				
+				<div>
+					<!-- Button Oblicz -->
+					<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" onclick="oblicz()">Oblicz</a>
+				</div>
+			</center>
+			</td>
+			<td class ="column">
 				<!-- Wyniki -->
 				<center>
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -421,7 +460,8 @@
 						<div class="mdl-textfield__input input" type="submit" id="wynikNaNukleonEV" readonly></div>
 					</div>
 				</center>
-			</div>
+			</td>
+			</table>
 		</div>
 	</body>
 </html>
