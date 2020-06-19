@@ -338,6 +338,12 @@
 
 <body style="overflow: auto;" bgcolor="#fafafa">
     <style>
+        .mdl-mini-footer {
+            bottom: 0;
+            width: 98.52%;
+            position: fixed;
+        }
+        
         .demo-card-wide.mdl-card {
             height: 600px;
             width: 600px;
@@ -346,6 +352,7 @@
             margin-top: 125px;
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: 50px;
         }
         
         .demo-card-wide>.mdl-card__title {
@@ -384,107 +391,119 @@
             height: 33px;
         }
     </style>
-    <a href="https://github.com/miloszwasacz/strona-energia-wiazania" target="_blank"><img width="149" height="149" src="forkme_right_gray_6d6d6d.png" style="position: absolute; top: 0px; right: 0px; border: 0px;" alt="Fork me on GitHub" data-recalc-dims="1"></a>
-    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title">
-            <center>
-                <h2 class="mdl-card__title-text"><b>Obliczanie energii wiązania</b></h2>
-            </center>
-        </div>
-        <div class="mdl-card__supporting-text" style="text-align: justify">
-            Podaj masę pierwiastka, jego liczbę atomową i masową lub wybierz jeden z najczęściej używanych izotopów, aby wyliczyć jego energię wiązania.
-        </div>
-        <table class="data-table">
-            <td class="column">
-                <center>
-                    <!-- Select with floating label -->
-                    <form action="select">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-                            <input type="text" value="" defaultvalue="" class="mdl-textfield__input" id="list" readonly>
-                            <input type="hidden" value="" name="list">
-                            <label for="list" class="mdl-textfield__label">Izotop</label>
-                            <ul for="list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu scrollable" onclick="uzupelnij(); oblicz()">
-                                <li class="mdl-menu__item" data-val="wodór">wodór</li>
-                                <li class="mdl-menu__item" data-val="deuter">deuter</li>
-                                <li class="mdl-menu__item" data-val="tryt">tryt</li>
-                                <li class="mdl-menu__item" data-val="He-4">He-4</li>
-                                <li class="mdl-menu__item" data-val="C-12">C-12</li>
-                                <li class="mdl-menu__item" data-val="Kr-93">Kr-93</li>
-                                <li class="mdl-menu__item" data-val="Sr-94">Sr-94</li>
-                                <li class="mdl-menu__item" data-val="Ba-140">Ba-140</li>
-                                <li class="mdl-menu__item" data-val="Ba-144">Ba-144</li>
-                                <li class="mdl-menu__item" data-val="Po-218">Po-218</li>
-                                <li class="mdl-menu__item" data-val="Rn-222">Rn-222</li>
-                                <li class="mdl-menu__item" data-val="Ra-226">Ra-226</li>
-                                <li class="mdl-menu__item" data-val="U-235">U-235</li>
-                                <li class="mdl-menu__item" data-val="Pu-239">Pu-239</li>
-                            </ul>
-                        </div>
-                    </form>
-                    <br>
-                    <!-- Masa -->
-                    <form action="#">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="inputMasa" oninput="oblicz()">
-                            <label class="mdl-textfield__label" for="inputMasa">Masa [ &#x22c5 10<sup>-27</sup> kg]</label>
-                            <span class="mdl-textfield__error">Błędna wartość</span>
-                        </div>
-                    </form>
+    <a href="https://github.com/miloszwasacz/strona-energia-wiazania" target="_blank">
+        <img width="149" height="149" src="forkme_right_gray_6d6d6d.png" style="position: absolute; top: 0px; right: 0px; border: 0px;" alt="Fork me on GitHub" data-recalc-dims="1">
+    </a>
 
-                    <!-- Liczba masowa -->
-                    <form action="#">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" pattern="\d*" id="inputLiczbaMas" oninput="oblicz()">
-                            <label class="mdl-textfield__label" for="inputLiczbaMas">Liczba masowa</label>
-                            <span class="mdl-textfield__error">Błędna wartość</span>
-                        </div>
-                    </form>
+    <center>
+        <main class="mdl-layout__content">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <center>
+                        <h2 class="mdl-card__title-text"><b>Obliczanie energii wiązania</b></h2>
+                    </center>
+                </div>
+                <div class="mdl-card__supporting-text" style="text-align: justify">
+                    Podaj masę pierwiastka, jego liczbę atomową i masową lub wybierz jeden z najczęściej używanych izotopów, aby wyliczyć jego energię wiązania.
+                </div>
+                <table class="data-table">
+                    <td class="column">
+                        <center>
+                            <!-- Select with floating label -->
+                            <form action="select">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                                    <input type="text" value="" defaultvalue="" class="mdl-textfield__input" id="list" readonly>
+                                    <input type="hidden" value="" name="list">
+                                    <label for="list" class="mdl-textfield__label">Izotop</label>
+                                    <ul for="list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu scrollable" onclick="uzupelnij(); oblicz()">
+                                        <li class="mdl-menu__item" data-val="wodór">wodór</li>
+                                        <li class="mdl-menu__item" data-val="deuter">deuter</li>
+                                        <li class="mdl-menu__item" data-val="tryt">tryt</li>
+                                        <li class="mdl-menu__item" data-val="He-4">He-4</li>
+                                        <li class="mdl-menu__item" data-val="C-12">C-12</li>
+                                        <li class="mdl-menu__item" data-val="Kr-93">Kr-93</li>
+                                        <li class="mdl-menu__item" data-val="Sr-94">Sr-94</li>
+                                        <li class="mdl-menu__item" data-val="Ba-140">Ba-140</li>
+                                        <li class="mdl-menu__item" data-val="Ba-144">Ba-144</li>
+                                        <li class="mdl-menu__item" data-val="Po-218">Po-218</li>
+                                        <li class="mdl-menu__item" data-val="Rn-222">Rn-222</li>
+                                        <li class="mdl-menu__item" data-val="Ra-226">Ra-226</li>
+                                        <li class="mdl-menu__item" data-val="U-235">U-235</li>
+                                        <li class="mdl-menu__item" data-val="Pu-239">Pu-239</li>
+                                    </ul>
+                                </div>
+                            </form>
+                            <br>
+                            <!-- Masa -->
+                            <form action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="inputMasa" oninput="oblicz()">
+                                    <label class="mdl-textfield__label" for="inputMasa">Masa [ &#x22c5 10<sup>-27</sup> kg]</label>
+                                    <span class="mdl-textfield__error">Błędna wartość</span>
+                                </div>
+                            </form>
 
-                    <!-- Liczba atomowa -->
-                    <form action="#">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" pattern="\d*" id="inputLiczbaAtom" oninput="oblicz()">
-                            <label class="mdl-textfield__label" for="inputLiczbaAtom">Liczba atomowa</label>
-                            <span class="mdl-textfield__error">Błędna wartość</span>
-                        </div>
-                    </form>
-                    <br>
-                    <!-- Masa składników -->
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <div class="mdl-textfield__label">Masa składników</div>
-                        <br>
-                        <div class="mdl-textfield__input input" type="submit" id="masaSkladnikow" readonly></div>
-                    </div>
-                </center>
-            </td>
-            <td class="column">
-                <!-- Wyniki -->
-                <center>
-                    <!-- Energia wiązania -->
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <div class="mdl-textfield__label">Energia wiązania</div>
-                        <br>
-                        <div class="mdl-textfield__input input" type="submit" id="wynikJ" readonly></div>
-                        <div class="mdl-textfield__input input" type="submit" id="wynikEV" readonly></div>
-                    </div>
-                    <!-- Energiaa na nukleon -->
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <div class="mdl-textfield__label">Energia wiązania na nukleon</div>
-                        <br>
-                        <div class="mdl-textfield__input input" type="submit" id="wynikNaNukleonJ" readonly></div>
-                        <div class="mdl-textfield__input input" type="submit" id="wynikNaNukleonEV" readonly></div>
-                    </div>
-                    <br><br>
-                    <!-- Deficyt masy -->
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <div class="mdl-textfield__label">Deficyt masy</div>
-                        <br>
-                        <div class="mdl-textfield__input input" type="submit" id="deficytMasy" readonly></div>
-                    </div>
-                </center>
-            </td>
-        </table>
-    </div>
+                            <!-- Liczba masowa -->
+                            <form action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" pattern="\d*" id="inputLiczbaMas" oninput="oblicz()">
+                                    <label class="mdl-textfield__label" for="inputLiczbaMas">Liczba masowa</label>
+                                    <span class="mdl-textfield__error">Błędna wartość</span>
+                                </div>
+                            </form>
+
+                            <!-- Liczba atomowa -->
+                            <form action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" pattern="\d*" id="inputLiczbaAtom" oninput="oblicz()">
+                                    <label class="mdl-textfield__label" for="inputLiczbaAtom">Liczba atomowa</label>
+                                    <span class="mdl-textfield__error">Błędna wartość</span>
+                                </div>
+                            </form>
+                            <br>
+                            <!-- Masa składników -->
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <div class="mdl-textfield__label">Masa składników</div>
+                                <br>
+                                <div class="mdl-textfield__input input" type="submit" id="masaSkladnikow" readonly></div>
+                            </div>
+                        </center>
+                    </td>
+                    <td class="column">
+                        <!-- Wyniki -->
+                        <center>
+                            <!-- Energia wiązania -->
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <div class="mdl-textfield__label">Energia wiązania</div>
+                                <br>
+                                <div class="mdl-textfield__input input" type="submit" id="wynikJ" readonly></div>
+                                <div class="mdl-textfield__input input" type="submit" id="wynikEV" readonly></div>
+                            </div>
+                            <!-- Energiaa na nukleon -->
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <div class="mdl-textfield__label">Energia wiązania na nukleon</div>
+                                <br>
+                                <div class="mdl-textfield__input input" type="submit" id="wynikNaNukleonJ" readonly></div>
+                                <div class="mdl-textfield__input input" type="submit" id="wynikNaNukleonEV" readonly></div>
+                            </div>
+                            <br><br>
+                            <!-- Deficyt masy -->
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <div class="mdl-textfield__label">Deficyt masy</div>
+                                <br>
+                                <div class="mdl-textfield__input input" type="submit" id="deficytMasy" readonly></div>
+                            </div>
+                        </center>
+                    </td>
+                </table>
+            </div>
+        </main>
+    </center>
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__right-section">
+            <div class="mdl-logo">Made by Miłosz Wąsacz</div>
+        </div>
+    </footer>
 </body>
 
 </html>
