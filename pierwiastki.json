@@ -1,0 +1,87 @@
+{
+    "pierwiastki": [{
+            "nazwa": "wodór",
+            "masa": 1.6726,
+            "liczbaMasowa": 1,
+            "liczbaAtomowa": 1
+        },
+        {
+            "nazwa": "deuter",
+            "masa": 3.3436,
+            "liczbaMasowa": 2,
+            "liczbaAtomowa": 1
+        },
+        {
+            "nazwa": "tryt",
+            "masa": 5.0074,
+            "liczbaMasowa": 3,
+            "liczbaAtomowa": 1
+        },
+        {
+            "nazwa": "He-4",
+            "masa": 6.6447,
+            "liczbaMasowa": 4,
+            "liczbaAtomowa": 2
+        },
+        {
+            "nazwa": "C-12",
+            "masa": 19.9210,
+            "liczbaMasowa": 12,
+            "liczbaAtomowa": 6
+        },
+        {
+            "nazwa": "Kr-93",
+            "masa": 154.2832,
+            "liczbaMasowa": 93,
+            "liczbaAtomowa": 36
+        },
+        {
+            "nazwa": "Sr-94",
+            "masa": 155.9155,
+            "liczbaMasowa": 94,
+            "liczbaAtomowa": 38
+        },
+        {
+            "nazwa": "Ba-140",
+            "masa": 232.2760,
+            "liczbaMasowa": 140,
+            "liczbaAtomowa": 56
+        },
+        {
+            "nazwa": "Ba-144",
+            "masa": 238.9387,
+            "liczbaMasowa": 144,
+            "liczbaAtomowa": 56
+        },
+        {
+            "nazwa": "Po-218",
+            "masa": 361.9359,
+            "liczbaMasowa": 218,
+            "liczbaAtomowa": 84
+        },
+        {
+            "nazwa": "Rn-222",
+            "masa": 368.5905,
+            "liczbaMasowa": 222,
+            "liczbaAtomowa": 86
+        },
+        {
+            "nazwa": "Ra-226",
+            "masa": 375.2438,
+            "liczbaMasowa": 226,
+            "liczbaAtomowa": 88
+        },
+        {
+            "nazwa": "U-235",
+            "masa": 390.2158,
+            "liczbaMasowa": 235,
+            "liczbaAtomowa": 92
+        },
+        {
+            "nazwa": "Pu-239",
+            "masa": 396.8698,
+            "liczbaMasowa": 239,
+            "liczbaAtomowa": 94
+        }
+    ]
+}
