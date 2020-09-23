@@ -3,101 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- Obliczenia -->
-    <script type="text/javascript" src="pierwiastki.json"></script>
-    <script>
-        let pierwiastkiList = [];
-        fetch('pierwiastki.json')
-            .then(function(response) {
-                if (!response.ok) {
-                    throw new Error("HTTP error, status = " + response.status);
-                }
-                return response.json();
-            })
-            .then(function(json) {
-                for (var i = 0; i < json.pierwiastki.length; i++) {
-                    pierwiastkiList.push(json.pierwiastki[i]);
-                }
-            })
-
-        function uzupelnij() {
-            var val = document.getElementById("list").value;
-            var index;
-            for (i = 0; i < pierwiastkiList.length; i++) {
-                if (val == pierwiastkiList[i].nazwa) {
-                    index = i;
-                    break;
-                }
-            }
-            var pierwistek = pierwiastkiList[index];
-
-            inputMasa.parentElement.MaterialTextfield.change(pierwistek.masa);
-            inputLiczbaMas.parentElement.MaterialTextfield.change(pierwistek.liczbaMasowa);
-            inputLiczbaAtom.parentElement.MaterialTextfield.change(pierwistek.liczbaAtomowa);
-        }
-
-        function oblicz() {
-            wyczysc();
-            var pierwistek = {
-                "masa": inputMasa.value,
-                "liczbaMasowa": inputLiczbaMas.value,
-                "liczbaAtomowa": inputLiczbaAtom.value
-            }
-            if (!isNaN(pierwistek.masa) && !isNaN(pierwistek.liczbaMasowa) && !isNaN(pierwistek.liczbaAtomowa)) {
-                var liczbaNeutronow = pierwistek.liczbaMasowa - pierwistek.liczbaAtomowa;
-                var sumaSkladnikow = pierwistek.liczbaAtomowa * 1.6726 * Math.pow(10, -27) + liczbaNeutronow * 1.6749 * Math.pow(10, -27);
-                var deficyt = sumaSkladnikow - (pierwistek.masa * Math.pow(10, -27));
-                var energiaJ = (deficyt * 9 * Math.pow(10, 16)).toExponential(4);
-                var energiaEV = (energiaJ / (1.6 * Math.pow(10, -19))).toExponential(4);
-                var energiaNaNukleonJ = (energiaJ / pierwistek.liczbaMasowa).toExponential(4);
-                var energiaNaNukleonEV = (energiaEV / pierwistek.liczbaMasowa).toExponential(4);
-
-                wyswietl(sumaSkladnikow.toExponential(4), "kg", masaSkladnikow)
-                wyswietl(deficyt.toExponential(4), "kg", deficytMasy)
-
-                wyswietl(energiaJ, "J", wynikJ)
-                wyswietl(energiaEV, "eV", wynikEV)
-                wyswietl(energiaNaNukleonJ, "J", wynikNaNukleonJ)
-                wyswietl(energiaNaNukleonEV, "eV", wynikNaNukleonEV)
-            }
-        }
-
-        function wyswietl(wartosc, jednostka, id) {
-            let e = wartosc.search(/e/i);
-            let x = wartosc[e + 2];
-            let y = (wartosc[e + 3] >= 0) ? wartosc[e + 3] : '';
-            let nowy = wartosc.substr(0, e);
-            const wykladnik = (((wartosc[e + 1] == '-') ? "-" : "") + x.toString() + y.toString()).sup()
-            id.innerHTML = nowy + " \u22c5 10" + wykladnik + " " + jednostka;
-        }
-
-        function wyczysc() {
-            wynikJ.innerHTML = "";
-            wynikEV.innerHTML = "";
-            wynikNaNukleonJ.innerHTML = "";
-            wynikNaNukleonEV.innerHTML = "";
-            masaSkladnikow.innerHTML = "";
-            deficytMasy.innerHTML = "";
-        }
-    </script>
-    <link rel="stylesheet" href="font.css" type="text/css">
-    <link rel="stylesheet" href="material.min.css">
-    <script defer src="material.min.js">
-    </script>
     <!-- Select -->
     <script>
         {
-            'use strict';
-            (function() {
-                function whenLoaded() {
-                    getmdlSelect.init('.getmdl-select');
-                };
-
-                window.addEventListener ?
-                    window.addEventListener("load", whenLoaded, false) :
-                    window.attachEvent && window.attachEvent("onload", whenLoaded);
-
-            }());
+            function whenLoaded() {
+                getmdlSelect.init('.getmdl-select');
+            };
 
             var getmdlSelect = {
                 _addEventListeners: function(dropdown) {
@@ -277,6 +188,101 @@
             };
         }
     </script>
+    <!-- Obliczenia -->
+    <script type="text/javascript" src="pierwiastki.json"></script>
+    <script>
+        let pierwiastkiList = [];
+        fetch('pierwiastki.json')
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error("HTTP error, status = " + response.status);
+                }
+                return response.json();
+            })
+            .then(function(json) {
+                for (var i = 0; i < json.pierwiastki.length; i++) {
+                    pierwiastkiList.push(json.pierwiastki[i]);
+                }
+            })
+            .then(onCreate)
+            .then(whenLoaded)
+
+        function uzupelnij() {
+            var val = document.getElementById("list").value;
+            var index;
+            for (i = 0; i < pierwiastkiList.length; i++) {
+                if (val == pierwiastkiList[i].nazwa) {
+                    index = i;
+                    break;
+                }
+            }
+            var pierwistek = pierwiastkiList[index];
+
+            inputMasa.parentElement.MaterialTextfield.change(pierwistek.masa);
+            inputLiczbaMas.parentElement.MaterialTextfield.change(pierwistek.liczbaMasowa);
+            inputLiczbaAtom.parentElement.MaterialTextfield.change(pierwistek.liczbaAtomowa);
+        }
+
+        function oblicz() {
+            wyczysc();
+            var pierwistek = {
+                "masa": inputMasa.value,
+                "liczbaMasowa": inputLiczbaMas.value,
+                "liczbaAtomowa": inputLiczbaAtom.value
+            }
+            if (!isNaN(pierwistek.masa) && !isNaN(pierwistek.liczbaMasowa) && !isNaN(pierwistek.liczbaAtomowa)) {
+                var liczbaNeutronow = pierwistek.liczbaMasowa - pierwistek.liczbaAtomowa;
+                var sumaSkladnikow = pierwistek.liczbaAtomowa * 1.6726 * Math.pow(10, -27) + liczbaNeutronow * 1.6749 * Math.pow(10, -27);
+                var deficyt = sumaSkladnikow - (pierwistek.masa * Math.pow(10, -27));
+                var energiaJ = (deficyt * 9 * Math.pow(10, 16)).toExponential(4);
+                var energiaEV = (energiaJ / (1.6 * Math.pow(10, -19))).toExponential(4);
+                var energiaNaNukleonJ = (energiaJ / pierwistek.liczbaMasowa).toExponential(4);
+                var energiaNaNukleonEV = (energiaEV / pierwistek.liczbaMasowa).toExponential(4);
+
+                wyswietl(sumaSkladnikow.toExponential(4), "kg", masaSkladnikow)
+                wyswietl(deficyt.toExponential(4), "kg", deficytMasy)
+
+                wyswietl(energiaJ, "J", wynikJ)
+                wyswietl(energiaEV, "eV", wynikEV)
+                wyswietl(energiaNaNukleonJ, "J", wynikNaNukleonJ)
+                wyswietl(energiaNaNukleonEV, "eV", wynikNaNukleonEV)
+            }
+        }
+
+        function wyswietl(wartosc, jednostka, id) {
+            let e = wartosc.search(/e/i);
+            let x = wartosc[e + 2];
+            let y = (wartosc[e + 3] >= 0) ? wartosc[e + 3] : '';
+            let nowy = wartosc.substr(0, e);
+            const wykladnik = (((wartosc[e + 1] == '-') ? "-" : "") + x.toString() + y.toString()).sup()
+            id.innerHTML = nowy + " \u22c5 10" + wykladnik + " " + jednostka;
+        }
+
+        function wyczysc() {
+            wynikJ.innerHTML = "";
+            wynikEV.innerHTML = "";
+            wynikNaNukleonJ.innerHTML = "";
+            wynikNaNukleonEV.innerHTML = "";
+            masaSkladnikow.innerHTML = "";
+            deficytMasy.innerHTML = "";
+        }
+
+        function onCreate() {
+            const myList = document.getElementById('ul');
+            for (var i = 0; i < pierwiastkiList.length; i++) {
+                var pierwiastek = pierwiastkiList[i]
+                let listItem = document.createElement('li');
+                listItem.textContent = pierwiastek.nazwa;
+                listItem.className = "mdl-menu__item";
+                listItem.setAttribute('data-val', pierwiastek.nazwa);
+                myList.appendChild(listItem);
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="font.css" type="text/css">
+    <link rel="stylesheet" href="material.min.css">
+    <script defer src="material.min.js">
+    </script>
 
 </head>
 
@@ -359,22 +365,7 @@
                                     <input type="text" value="" defaultvalue="" class="mdl-textfield__input" id="list" readonly>
                                     <input type="hidden" value="" name="list">
                                     <label for="list" class="mdl-textfield__label">Izotop</label>
-                                    <ul for="list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu scrollable" onclick="uzupelnij(); oblicz()">
-                                        <li class="mdl-menu__item" data-val="wodór">wodór</li>
-                                        <li class="mdl-menu__item" data-val="deuter">deuter</li>
-                                        <li class="mdl-menu__item" data-val="tryt">tryt</li>
-                                        <li class="mdl-menu__item" data-val="He-4">He-4</li>
-                                        <li class="mdl-menu__item" data-val="C-12">C-12</li>
-                                        <li class="mdl-menu__item" data-val="Kr-93">Kr-93</li>
-                                        <li class="mdl-menu__item" data-val="Sr-94">Sr-94</li>
-                                        <li class="mdl-menu__item" data-val="Ba-140">Ba-140</li>
-                                        <li class="mdl-menu__item" data-val="Ba-144">Ba-144</li>
-                                        <li class="mdl-menu__item" data-val="Po-218">Po-218</li>
-                                        <li class="mdl-menu__item" data-val="Rn-222">Rn-222</li>
-                                        <li class="mdl-menu__item" data-val="Ra-226">Ra-226</li>
-                                        <li class="mdl-menu__item" data-val="U-235">U-235</li>
-                                        <li class="mdl-menu__item" data-val="Pu-239">Pu-239</li>
-                                    </ul>
+                                    <ul id="ul" for="list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu scrollable" onclick="uzupelnij(); oblicz()"></ul>
                                 </div>
                             </form>
                             <br>
